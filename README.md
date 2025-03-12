@@ -403,3 +403,78 @@ GET /api/orders/:id
 如有问题或建议，请联系：
 - 技术支持：support@example.com
 - 项目负责人：admin@example.com
+
+## 部署指南
+
+### PM2 部署方式
+
+PM2 是一个进程管理工具，可以帮助您管理和保持应用程序的运行。
+
+#### 1. 安装 PM2
+```bash
+# 全局安装 PM2
+npm install -g pm2
+```
+
+#### 2. 使用 PM2 启动项目
+```bash
+# 进入项目目录
+cd /root/mall
+
+# 启动开发服务器
+pm2 start "npm run dev" --name "mall-dev" -- --host 0.0.0.0 --port 3000
+
+# 查看运行状态
+pm2 status
+```
+
+#### 3. 配置自动启动
+```bash
+# 生成并配置 PM2 启动脚本
+pm2 startup
+
+# 保存当前进程列表
+pm2 save
+```
+
+#### 4. PM2 常用命令
+```bash
+# 查看应用状态
+pm2 status
+
+# 查看应用日志
+pm2 logs mall-dev
+
+# 重启应用
+pm2 restart mall-dev
+
+# 停止应用
+pm2 stop mall-dev
+
+# 删除应用
+pm2 delete mall-dev
+```
+
+#### 5. 注意事项
+- 确保使用正确的主机和端口配置
+- 使用 `pm2 logs` 命令查看错误信息
+- 使用 `pm2 save` 保存新的进程配置
+- 服务器重启后，PM2 会自动启动已保存的应用
+
+### 开发模式切换
+
+在开发过程中，可以灵活切换between PM2 和直接运行：
+
+1. 使用 PM2（后台运行）：
+```bash
+pm2 start "npm run dev" --name "mall-dev" -- --host 0.0.0.0 --port 3000
+```
+
+2. 直接运行（前台运行）：
+```bash
+# 如果 PM2 正在运行，先停止它
+pm2 stop mall-dev
+
+# 直接启动开发服务器
+npm run dev
+```
