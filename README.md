@@ -48,19 +48,22 @@ mall/
 ├── server/             # 服务端
 │   ├── api/            # API接口
 │   │   ├── products.ts # 商品接口
-│   │   └── cart.ts     # 购物车接口
+│   │   ├── cart.ts     # 购物车接口
+│   │   ├── banners.ts  # 轮播图接口
+│   │   └── test.ts     # 测试接口
 │   ├── db/            # 数据库配置
-│   │   └── index.ts   # 数据库连接配置
-│   └── models/        # 数据模型
-│       ├── product.ts # 商品模型
-│       └── cart.ts    # 购物车模型
+│   │   ├── init.sql   # 数据库初始化
+│   │   ├── test-data.sql # 测试数据
+│   │   └── update-images.sql # 图片更新脚本
 ├── stores/            # 状态管理
-│   ├── cart.ts       # 购物车状态
-│   └── product.ts    # 商品状态
-├── types/            # TypeScript类型定义
-│   └── index.ts     # 全局类型定义
-└── assets/          # 静态资源
-    └── css/        # 样式文件
+│   └── cart.ts       # 购物车状态
+├── public/           # 公共资源
+│   ├── customer-service.svg # 客服图标
+│   ├── payment-manual.svg   # 支付图标
+│   ├── favicon.ico         # 网站图标
+│   └── robots.txt         # 爬虫配置
+└── assets/           # 静态资源
+    └── css/         # 样式文件
         └── main.css # 全局样式
 
 ```
@@ -91,6 +94,8 @@ mall/
 - 价格计算
 - 结算功能
 - 购物车同步
+- 购物车图标动画效果
+- 商品数量实时更新
 
 ### 4. 结算模块
 - 确认订单信息
@@ -98,6 +103,107 @@ mall/
 - 订单提交
 - 支付流程
 - 订单状态跟踪
+- 支付方式选择界面
+- 订单确认动画
+
+### 5. 客服系统
+- 在线客服咨询
+- 客服图标显示
+- 聊天窗口弹出
+- 移动端适配
+- 实时对话功能
+- 客服状态显示
+- 会话保持功能
+
+## 最新更新功能
+
+### 1. 在线客服系统
+- 集成第三方客服系统
+- 自定义客服按钮样式
+- 响应式聊天窗口
+- 支持移动端显示
+- 聊天窗口动画效果
+- 遮罩层交互
+- 会话状态管理
+
+### 2. UI/UX优化
+- 优化移动端适配
+- 添加转场动画
+- 优化加载状态
+- 完善错误提示
+- 优化页面布局
+- 增强用户交互体验
+
+### 3. 性能优化
+- 延迟加载优化
+- 组件按需加载
+- 图片懒加载
+- 缓存优化
+- 请求优化
+
+## 开发指南
+
+### 1. 环境准备
+```bash
+# 克隆项目
+git clone https://github.com/DavisNova/mall.git
+
+# 安装依赖
+npm install
+
+# 配置环境变量
+cp .env.example .env
+```
+
+### 2. 开发服务器
+```bash
+# 启动开发服务器
+npm run dev
+```
+
+### 3. 生产部署
+```bash
+# 构建项目
+npm run build
+
+# 启动服务
+npm run start
+```
+
+### 4. 项目配置
+- 在 `nuxt.config.ts` 中配置项目参数
+- 在 `.env` 文件中配置环境变量
+- 在 `app.vue` 中配置全局样式和组件
+
+## 注意事项
+1. 确保 Node.js 版本 >= 16.0
+2. 开发时注意移动端适配
+3. 注意API接口的跨域配置
+4. 关注性能优化
+5. 保持代码规范
+
+## 更新日志
+
+### 2024-03-12
+- 新增在线客服系统
+- 优化移动端显示效果
+- 完善项目文档
+- 修复已知问题
+
+### 2024-03-11
+- 初始化项目结构
+- 完成基础功能开发
+- 添加购物车功能
+- 集成支付系统
+
+## 贡献指南
+1. Fork 本仓库
+2. 创建特性分支
+3. 提交代码
+4. 创建 Pull Request
+
+## 许可证
+MIT License
 
 ## 数据库设计
 
@@ -212,49 +318,6 @@ POST /api/orders
 2. 获取订单详情
 ```
 GET /api/orders/:id
-```
-
-## 开发指南
-
-### 1. 环境准备
-```bash
-# 克隆项目
-git clone <repository_url>
-
-# 安装依赖
-npm install
-
-# 配置环境变量
-cp .env.example .env
-```
-
-### 2. 数据库配置
-1. 创建数据库
-```sql
-CREATE DATABASE mall_db CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
-```
-
-2. 导入数据表
-```bash
-mysql -u root -p mall_db < server/db/init.sql
-```
-
-### 3. 开发服务器
-```bash
-# 启动开发服务器
-npm run dev
-```
-
-### 4. 生产部署
-```bash
-# 构建项目
-npm run build
-
-# 启动服务
-npm run start
-
-# 使用PM2部署
-pm2 start npm --name "mall" -- start
 ```
 
 ## 移动端适配注意事项
